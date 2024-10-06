@@ -1,6 +1,5 @@
 #IMPORTING NECESSARY LIBRARIES
 
-
 import discord
 from discord.ext import commands
 from discord import FFmpegPCMAudio
@@ -13,15 +12,12 @@ import os
 
 #INTENTS
 
-
 intents = discord.Intents.default()
 intents.message_content = True 
 intents.members = True
 client=commands.Bot(command_prefix='-', intents=intents)
 
-
 #BASIC COMMANDS
-
 
 @client.command()
 async def hello(ctx):
@@ -35,10 +31,8 @@ async def bye(ctx):
 async def kritika(ctx):
     await ctx.send("Hey Kritika, How are you?")
     await ctx.send(f"<:monkaS:1287150884748525693> <:pepewow:1287152531167772692> <:Pepega:1287150990629404833>")
-
-
+    
 #EVENTS
-
 
 @client.event
 async def on_ready():
@@ -107,16 +101,13 @@ async def on_member_join(member):
                     await channel.send("Could not retrieve any categories.")
             else:
                 await channel.send(f"Oops, couldn't fetch categories. Error: {response.status}")
-
-    
+  
 @client.event
 async def on_member_remove(member):
     channel=client.get_channel(1282705212355907647)
     await channel.send(f"{member.mention} has left the server")
 
-
 # MUSIC PART COMMANDS FOR BOT
-
 
 @client.command(pass_context=True)
 async def join(ctx):
@@ -176,7 +167,6 @@ logging.basicConfig(level=logging.INFO,
                         logging.StreamHandler()           
                     ])
 
-
 @client.command()
 async def play(ctx, url):
     if ctx.author.voice:
@@ -212,9 +202,7 @@ async def play(ctx, url):
         await ctx.send("You need to be in a voice channel!")
         logging.warning("User not in a voice channel.")
 
-
 #KICK AND BAN PEOPLE
-
 
 from discord.ext.commands import has_permissions,MissingPermissions
 from discord import Member
@@ -264,9 +252,7 @@ async def unban_error(ctx, error):
     elif isinstance(error, ValueError):
         await ctx.send("Please provide a valid member in the format 'Username#1234'.")
 
-
 #EMBEDS
-
 
 @client.command()
 async def embed(ctx):
@@ -284,9 +270,7 @@ async def embed(ctx):
     embed.set_thumbnail(url="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg")
     await ctx.send(embed=embed)
 
-
 #BOTS COMMANDS FOR DM
-
 
 @client.command()
 async def message(ctx, user: discord.Member, *, message=None):
@@ -317,9 +301,7 @@ async def message(ctx, user: discord.Member, *, message=None):
 
     await user.send(embed=embed)
 
-
 #ROLES COMMANDS
-
 
 from discord.utils import get
 
@@ -344,8 +326,7 @@ async def role_error(ctx, error):
         await ctx.send("You don't have permission to add roles.")
     elif isinstance(error, commands.BadArgument):
         await ctx.send("Please provide a valid member and role.")
-
-        
+      
 @client.command(pass_context=True)
 @commands.has_permissions(manage_roles=True)
 async def removeRole(ctx,user:discord.Member,*,role:discord.Role):
@@ -361,10 +342,5 @@ async def role_error(ctx,error):
     if isinstance(error,commands.MissingPermissions):
         await ctx.send("You don't have permission to remove roles.")
 
-
 # DISCORD BOT RUNNING
-
-if TOKEN is None:
-    print("Token not found!")
-else:
-    client.run(DISCORD_TOKEN)
+client.run(DISCORD_TOKEN)
