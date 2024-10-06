@@ -10,6 +10,8 @@ import aiohttp
 import random
 import os
 
+DISCORD_TOKEN = os.environ.get('DISCORD_TOKEN')
+
 #INTENTS
 
 intents = discord.Intents.default()
