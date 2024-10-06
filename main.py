@@ -5,7 +5,6 @@ import discord
 from discord.ext import commands
 from discord import FFmpegPCMAudio
 import json
-from apikeys import *
 import requests
 import yt_dlp
 import aiohttp
